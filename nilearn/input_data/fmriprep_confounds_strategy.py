@@ -16,7 +16,7 @@ from . import fmriprep_confounds
 preset_strategies = {
     "simple": {
         "strategy":
-            ["high_pass", "non_steady_state", "motion", "wm_csf"],
+            ("high_pass", "motion", "wm_csf"),
         "motion": "full",
         "wm_csf": "basic",
         "global_signal": None,
@@ -24,18 +24,18 @@ preset_strategies = {
     },
     "scrubbing": {
         "strategy":
-            ["high_pass", "non_steady_state", "motion", "wm_csf", "scrub"],
+            ("high_pass", "motion", "wm_csf", "scrub"),
         "motion": "full",
         "wm_csf": "full",
         "scrub": 5,
-        "fd_thresh": 0.2,
-        "std_dvars_thresh": 3,
+        "fd_threshold": 0.2,
+        "std_dvars_threshold": 3,
         "global_signal": None,
         "demean": True
     },
     "compcor": {
         "strategy":
-            ["high_pass", "non_steady_state", "motion", "compcor"],
+            ("high_pass", "motion", "compcor"),
         "motion": "full",
         "n_compcor": "all",
         "compcor": "anat_combined",
@@ -43,7 +43,7 @@ preset_strategies = {
     },
     "ica_aroma": {
         "strategy":
-            ["high_pass", "non_steady_state", "wm_csf", "ica_aroma"],
+            ("high_pass", "wm_csf", "ica_aroma"),
         "wm_csf": "basic",
         "ica_aroma": "full",
         "global_signal": None,
@@ -237,7 +237,7 @@ def _update_user_inputs(kwargs, default_parameters, check_parameters):
         # recognisable value to the global_signal parameter
         if key == "global_signal":
             if isinstance(value, str):
-                parameters["strategy"].append("global")
+                parameters["strategy"] += ("global_signal", )
             else:  # remove global signal if not updated
                 parameters.pop("global_signal", None)
     # collect remaining parameters in kwargs that are not needed
