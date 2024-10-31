@@ -429,7 +429,7 @@ class Parcellations(_MultiPCA):
 
             self.connectivity_ = connectivity
         # Avoid 0 label
-        labels = labels + 1
+        labels += 1
         unique_labels = np.unique(labels)
 
         # Check that appropriate number of labels were created

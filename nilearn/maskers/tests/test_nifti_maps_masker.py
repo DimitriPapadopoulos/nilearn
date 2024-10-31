@@ -242,7 +242,7 @@ def test_nifti_maps_masker_with_nans_and_infs():
     # Add NaNs and infs to atlas
     maps_data = get_data(maps_img).astype(np.float32)
     mask_data = get_data(mask_img).astype(np.float32)
-    maps_data = maps_data * mask_data[..., None]
+    maps_data *= mask_data[..., None]
 
     # Choose a good voxel from the first label
     vox_idx = np.where(maps_data[..., 0] > 0)

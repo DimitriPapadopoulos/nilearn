@@ -195,7 +195,7 @@ def _geometric_mean(matrices, init=None, max_iter=10, tol=1e-7):
         if norm < norm_old:
             norm_old = norm
         elif norm > norm_old:
-            step = step / 2.0
+            step /= 2.0
             norm = norm_old
         if tol is not None and norm / gmean.size < tol:
             break
@@ -558,7 +558,7 @@ class ConnectivityMeasure(BaseEstimator, TransformerMixin):
             else:
                 self.mean_ = np.mean(connectivities, axis=0)
                 # Fight numerical instabilities: make symmetric
-                self.mean_ = self.mean_ + self.mean_.T
+                self.mean_ += self.mean_.T
                 self.mean_ *= 0.5
 
         # Compute the vector we return on transform

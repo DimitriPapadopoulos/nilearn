@@ -235,7 +235,7 @@ def get_dataset_dir(
     # Check if the dataset exists somewhere
     for path, is_pre_dir in paths:
         if not is_pre_dir:
-            path = path / dataset_name
+            path /= dataset_name
         if path.is_symlink():
             # Resolve path
             path = path.resolve()
@@ -249,7 +249,7 @@ def get_dataset_dir(
     errors = []
     for path, is_pre_dir in paths:
         if not is_pre_dir:
-            path = path / dataset_name
+            path /= dataset_name
         if not path.exists():
             try:
                 path.mkdir(parents=True)

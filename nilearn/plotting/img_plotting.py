@@ -1779,8 +1779,8 @@ def plot_markers(
     node_vmin = np.min(node_values) if node_vmin is None else node_vmin
     node_vmax = np.max(node_values) if node_vmax is None else node_vmax
     if node_vmin == node_vmax:
-        node_vmin = 0.9 * node_vmin
-        node_vmax = 1.1 * node_vmax
+        node_vmin *= 0.9
+        node_vmax *= 1.1
     norm = mpl.colors.Normalize(vmin=node_vmin, vmax=node_vmax)
     node_cmap = (
         plt.get_cmap(node_cmap) if isinstance(node_cmap, str) else node_cmap

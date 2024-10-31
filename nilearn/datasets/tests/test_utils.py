@@ -323,7 +323,7 @@ def test_filter_columns():
 
     assert np.sum(f) == 15
 
-    value1 = value1 % 2
+    value1 %= 2
     values = np.asarray(
         list(zip(value1, value2)), dtype=[("INT", int), ("STR", b"S1")]
     )

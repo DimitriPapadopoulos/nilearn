@@ -192,19 +192,19 @@ def _configure_grid(axes, tri, size):
     if tri == "lower":
         for i in range(size):
             # Correct for weird mis-sizing
-            i = 1.001 * i
+            i *= 1.001
             axes.plot([i + 0.5, i + 0.5], [size - 0.5, i + 0.5], color="grey")
             axes.plot([i + 0.5, -0.5], [i + 0.5, i + 0.5], color="grey")
     elif tri == "diag":
         for i in range(size):
             # Correct for weird mis-sizing
-            i = 1.001 * i
+            i *= 1.001
             axes.plot([i + 0.5, i + 0.5], [size - 0.5, i - 0.5], color="grey")
             axes.plot([i + 0.5, -0.5], [i - 0.5, i - 0.5], color="grey")
     else:
         for i in range(size):
             # Correct for weird mis-sizing
-            i = 1.001 * i
+            i *= 1.001
             axes.plot([i + 0.5, i + 0.5], [size - 0.5, -0.5], color="grey")
             axes.plot([size - 0.5, -0.5], [i + 0.5, i + 0.5], color="grey")
 
@@ -478,7 +478,7 @@ def plot_design_matrix(
     # normalize the values per column for better visualization
     _, X, names = check_design_matrix(design_matrix)
     if rescale:
-        X = X / np.maximum(1.0e-12, np.sqrt(np.sum(X**2, 0)))
+        X /= np.maximum(1e-12, np.sqrt(np.sum(X ** 2, 0)))
     if axes is None:
         max_len = np.max([len(str(name)) for name in names])
         fig_height = 1 + 0.1 * X.shape[0] + 0.04 * max_len

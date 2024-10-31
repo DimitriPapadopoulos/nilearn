@@ -103,10 +103,10 @@ def _threshold_data(data, threshold=None):
     # Mask data
     if threshold == 0:
         mask = data == 0
-        data = data * np.logical_not(mask)
+        data *= np.logical_not(mask)
     else:
         mask = (data >= -threshold) & (data <= threshold)
-        data = data * np.logical_not(mask)
+        data *= np.logical_not(mask)
 
     if not np.any(mask):
         warnings.warn(
@@ -339,7 +339,7 @@ def _json_view_size(params, width_view=600):
     # axial_height (y).
     # Also add 20% extra height for annotation and margin
     slices_height = np.max([params["nbSlice"]["Y"], params["nbSlice"]["Z"]])
-    slices_height = 1.20 * slices_height
+    slices_height *= 1.2
 
     # Get the final size of the viewer
     ratio = slices_height / slices_width

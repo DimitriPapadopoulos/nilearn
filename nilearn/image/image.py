@@ -615,7 +615,7 @@ def mean_img(
         this_mean = this_mean[0]
         running_mean += this_mean
 
-    running_mean = running_mean / float(n_imgs)
+    running_mean /= float(n_imgs)
     return new_img_like(
         first_img, running_mean, target_affine, copy_header=copy_header
     )

@@ -90,15 +90,10 @@ def _edge_detect(image, high_threshold=0.75, low_threshold=0.4):
     # greater than its neighbors normal to the edge direction.
     thinner = np.zeros(grad_mag.shape, dtype=bool)
     for angle in np.arange(0, 2, 0.25):
-        thinner = thinner | (
-            (
-                grad_mag
-                > 0.85
-                * maximum_filter(
-                    grad_mag, footprint=_orientation_kernel(angle)
-                )
-            )
-            & (((grad_angle - angle) % 2) < 0.75)
+        thinner |= (
+            (grad_mag > 0.85 * maximum_filter(
+                grad_mag, footprint=_orientation_kernel(angle))
+            ) & ((grad_angle - angle) % 2 < 0.75)
         )
     # Remove the edges next to the side of the image: they are not reliable
     thinner[0] = 0

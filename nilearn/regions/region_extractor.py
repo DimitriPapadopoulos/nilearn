@@ -194,7 +194,7 @@ def connected_regions(
     maps_img = check_niimg(maps_img, atleast_4d=True)
     maps = safe_get_data(maps_img, copy_data=True)
     affine = maps_img.affine
-    min_region_size = min_region_size / np.abs(np.linalg.det(affine[:3, :3]))
+    min_region_size /= np.abs(np.linalg.det(affine[:3, :3]))
 
     allowed_extract_types = ["connected_components", "local_regions"]
     if extract_type not in allowed_extract_types:

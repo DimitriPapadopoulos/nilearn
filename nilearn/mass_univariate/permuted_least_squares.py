@@ -192,9 +192,7 @@ def _permuted_ols_on_chunk(
     for i_perm in range(n_perm_chunk):
         if intercept_test:
             # sign swap (random multiplication by 1 or -1)
-            target_vars = target_vars * (
-                rng.randint(2, size=(n_samples, 1)) * 2 - 1
-            )
+            target_vars *= rng.randint(2, size=(n_samples, 1)) * 2 - 1
 
         else:
             # shuffle data
@@ -941,7 +939,7 @@ def permuted_ols(
                 )
                 n_negative_clusters = np.max(temp_labeled_arr3d)
                 labeled_arr3d[labeled_arr3d > 0] += n_negative_clusters
-                labeled_arr3d = labeled_arr3d + temp_labeled_arr3d
+                labeled_arr3d += temp_labeled_arr3d
                 del temp_labeled_arr3d
 
             cluster_labels, idx, cluster_dict["size_regressor"] = np.unique(

@@ -1112,7 +1112,7 @@ def _mock_bids_dataset(
     ):
         subses_dir = bids_path / f"sub-{subject}"
         if session != "":
-            subses_dir = subses_dir / f"ses-{session}"
+            subses_dir /= f"ses-{session}"
 
         if session in ("01", ""):
             _write_bids_raw_anat(subses_dir, subject, session)
@@ -1201,7 +1201,7 @@ def _mock_bids_derivatives(
         Random number generator.
 
     """
-    bids_path = bids_path / "derivatives"
+    bids_path /= "derivatives"
     bids_path.mkdir(parents=True, exist_ok=True)
 
     for subject, session in itertools.product(
@@ -1209,7 +1209,7 @@ def _mock_bids_derivatives(
     ):
         subses_dir = bids_path / f"sub-{subject}"
         if session != "":
-            subses_dir = subses_dir / f"ses-{session}"
+            subses_dir /= f"ses-{session}"
 
         func_path = subses_dir / "func"
         func_path.mkdir(parents=True, exist_ok=True)

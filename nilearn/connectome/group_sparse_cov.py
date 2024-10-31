@@ -93,7 +93,7 @@ def _update_submatrix(full, sub, sub_inv, p, h, v):
     # change row: first usage of SWM identity
     coln = sub_inv[:, n : n + 1]  # 2d array, useful for sub_inv below
     V = h - sub[n, :]
-    coln = coln / (1.0 + np.dot(V, coln))
+    coln /= 1.0 + np.dot(V, coln)
     # The following line is equivalent to
     # sub_inv -= np.outer(coln, np.dot(V, sub_inv))
     sub_inv -= np.dot(coln, np.dot(V, sub_inv)[np.newaxis, :])
@@ -102,7 +102,7 @@ def _update_submatrix(full, sub, sub_inv, p, h, v):
     # change column: second usage of SWM identity
     rown = sub_inv[n : n + 1, :]  # 2d array, useful for sub_inv below
     U = v - sub[:, n]
-    rown = rown / (1.0 + np.dot(rown, U))
+    rown /= 1.0 + np.dot(rown, U)
     # The following line is equivalent to (but faster)
     # sub_inv -= np.outer(np.dot(sub_inv, U), rown)
     sub_inv -= np.dot(np.dot(sub_inv, U)[:, np.newaxis], rown)
@@ -657,7 +657,7 @@ def empirical_covariances(subjects, assume_centered=False, standardize=False):
     emp_covs = np.empty((n_features, n_features, n_subjects), order="F")
     for k, s in enumerate(subjects):
         if standardize:
-            s = s / s.std(axis=0)  # copy on purpose
+            s /= s.std(axis=0)  # copy on purpose
         M = empirical_covariance(s, assume_centered=assume_centered)
 
         # Force matrix symmetry, for numerical stability

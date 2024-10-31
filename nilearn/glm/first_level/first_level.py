@@ -873,7 +873,7 @@ class FirstLevelModel(BaseGLM):
                 category=UserWarning,
                 stacklevel=2,
             )
-            con_vals = con_vals * n_runs
+            con_vals *= n_runs
         elif n_contrasts != n_runs:
             raise ValueError(
                 f"{n_contrasts} contrasts given, "

@@ -216,7 +216,7 @@ def test_geometric_mean_geodesic():
     n_matrices = 10
     n_features = 6
     sym = np.arange(n_features) / np.linalg.norm(np.arange(n_features))
-    sym = sym * sym[:, np.newaxis]
+    sym *= sym[:, np.newaxis]
     times = np.arange(n_matrices)
     non_singular = np.eye(n_features)
     non_singular[1:3, 1:3] = np.array([[-1, -0.5], [-0.5, -1]])
@@ -361,7 +361,7 @@ def grad_geometric_mean(mats, init=None, max_iter=10, tol=1e-7):
         # Update the norm and the step size
         norm_old = min(norm, norm_old)
         if norm > norm_old:
-            step = step / 2.0
+            step /= 2.0
             norm = norm_old
 
         grad_norm.append(norm / gmean.size)

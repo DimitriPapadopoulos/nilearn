@@ -297,7 +297,7 @@ def save_glm_to_bids(
     dset_desc_file = out_dir / "dataset_description.json"
     _generate_dataset_description(dset_desc_file, model_level)
 
-    out_dir = out_dir / sub_directory
+    out_dir /= sub_directory
     out_dir.mkdir(exist_ok=True, parents=True)
 
     if not isinstance(contrast_types, dict):

@@ -238,7 +238,7 @@ def _mask_and_reduce_single(
         _fast_svd, memory, memory_level=memory_level, func_memory_level=3
     )(this_data.T, n_samples, random_state=random_state)
     U = U.T.copy()
-    U = U * S[:, np.newaxis]
+    U *= S[:, np.newaxis]
     return U
 
 
@@ -616,7 +616,7 @@ def _explained_variance(X, components, per_component=True):
     n_components = components.shape[0]
     S = np.sqrt(np.sum(components**2, axis=1))
     S[S == 0] = 1
-    components = components / S[:, np.newaxis]
+    components /= S[:, np.newaxis]
     projected_data = components.dot(X.T)
     if per_component:
         res_var = np.zeros(n_components)

@@ -181,9 +181,7 @@ def adjust_screening_percentile(
         )
 
     if screening_percentile < 100.0:
-        screening_percentile = screening_percentile * (
-            reference_extent / mask_extent
-        )
+        screening_percentile *= reference_extent / mask_extent
         screening_percentile = min(screening_percentile, 100.0)
     # if screening_percentile is 100, we don't do anything
 
