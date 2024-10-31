@@ -21,8 +21,8 @@ from .surface import (
 __all__ = [
     "Mesh",
     "Surface",
-    "check_surface",
     "check_mesh_and_data",
+    "check_surface",
     "load_surf_data",
     "load_surf_mesh",
     "load_surface",
