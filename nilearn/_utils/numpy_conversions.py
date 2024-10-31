@@ -21,10 +21,10 @@ def _asarray(arr, dtype=None, order=None):
         (arr.itemsize == 1 and dtype in (bool, np.bool_))
         or (arr.dtype in (bool, np.bool_) and np.dtype(dtype).itemsize == 1)
     ) and (
-        order == "F"
-        and arr.flags["F_CONTIGUOUS"]
-        or order == "C"
-        and arr.flags["C_CONTIGUOUS"]
+        (order == "F"
+        and arr.flags["F_CONTIGUOUS"])
+        or (order == "C"
+        and arr.flags["C_CONTIGUOUS"])
     ):
         ret = arr.view(dtype=dtype)
     else:

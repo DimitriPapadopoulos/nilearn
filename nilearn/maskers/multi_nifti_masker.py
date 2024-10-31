@@ -292,8 +292,8 @@ class MultiNiftiMasker(NiftiMasker, _utils.CacheMixin):
 
         if (
             (self.target_shape is not None)
-            or (self.target_affine is not None)
-            and self.reports
+            or ((self.target_affine is not None)
+            and self.reports)
         ):
             resampl_imgs = None
             if imgs is not None:

@@ -492,10 +492,10 @@ class GlassBrainAxes(BaseAxes):
             xcoords, ycoords, zcoords = marker_coords.T
             for cidx, xc in enumerate(xcoords):
                 if (
-                    self.direction == "r"
-                    and xc >= 0
-                    or self.direction == "l"
-                    and xc <= 0
+                    (self.direction == "r"
+                    and xc >= 0)
+                    or (self.direction == "l"
+                    and xc <= 0)
                 ):
                     relevant_coords.append(cidx)
             xdata = xdata[relevant_coords]
